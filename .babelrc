@@ -1,0 +1,44 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 8"
+          ]
+        },
+        "useBuiltIns": true
+      }
+    ],
+    "stage-0",
+    "flow"
+  ],
+  "plugins": [
+    "lodash",
+    "transform-decorators-legacy",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@lib": "./src/lib/index.js",
+          "@store$": "./src/store/index.js",
+          "@store": "./src/store",
+          "@utils$": "./src/utils/index.js",
+          "@utils": "./src/utils"
+        }
+      }
+    ],
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
+    ],
+    "./config/babel-mini-program"
+  ]
+}
