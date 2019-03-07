@@ -18,28 +18,27 @@ const wxApis = [
   'showModal',
 ]
 
+wx.pro = {}
+
 wxApis.forEach(name => {
-  const func = wx[name]
-  if (typeof func !== 'function') {
+  if (typeof wx[name] !== 'function') {
     throw new Error(`wx.${name} is not a function`)
   }
-  Object.defineProperty(wx, name, {
-    value(options = {}): Promise {
-      return new Promise((resolve, reject) => {
-        const { success, fail, complete } = options
-        func({
-          ...options,
-          success: res => {
-            resolve(res)
-            success && success(res)
-          },
-          fail: err => {
-            reject(new Error(err.errMsg))
-            fail && fail(err)
-          },
-          complete,
-        })
+  wx.pro[name] = function(options) {
+    return new Promise((resolve, reject) => {
+      const { success, fail, complete } = options
+      wx[name]({
+        ...options,
+        success: res => {
+          resolve(res)
+          success && success(res)
+        },
+        fail: err => {
+          reject(new Error(err.errMsg))
+          fail && fail(err)
+        },
+        complete,
       })
-    },
-  })
+    })
+  }
 })
