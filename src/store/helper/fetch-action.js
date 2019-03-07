@@ -1,7 +1,6 @@
 import { flow } from 'mobx'
 import _ from 'lodash'
 import autoBind from 'core-decorators/lib/autobind'
-import type { WebAPIStore } from './web-api-store'
 
 function fetchActionDecorator(target, name, descriptor, { bound = false, autoMerge = false, useFlow = false } = {}) {
   const { value } = descriptor
@@ -9,7 +8,7 @@ function fetchActionDecorator(target, name, descriptor, { bound = false, autoMer
   const oldAction = useFlow ? flow(value) : value
 
   descriptor.value = flow(function* result() {
-    const self: WebAPIStore = this
+    const self = this
     try {
       self.setPendingState(name)
       const res = yield oldAction.apply(self, arguments)
@@ -27,7 +26,7 @@ function fetchActionDecorator(target, name, descriptor, { bound = false, autoMer
   return bound ? autoBind(target, name, descriptor) : descriptor
 }
 
-function fetchActionDecoratorCreate(options: Object) {
+function fetchActionDecoratorCreate(options) {
   return (...args) => fetchActionDecorator(...args, options)
 }
 

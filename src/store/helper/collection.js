@@ -1,10 +1,10 @@
-import { computed, action, observable, IObservableArray } from 'mobx'
+import { computed, action, observable } from 'mobx'
 import { WebAPIStore } from './web-api-store'
 import fetchAction from './fetch-action'
 
 export class Collection extends WebAPIStore {
-  fetchApi: Object => Promise
-  params: Object = {}
+  fetchApi = function() {}
+  params = {}
 
   @observable
   meta = {
@@ -13,7 +13,7 @@ export class Collection extends WebAPIStore {
     per_page: 10,
   }
 
-  @observable data: IObservableArray = []
+  @observable data = []
 
   @fetchAction.merge
   fetchData() {
@@ -32,7 +32,7 @@ export class Collection extends WebAPIStore {
     this.data.push(...data)
   }
 
-  findItem(id: number) {
+  findItem(id) {
     return this.data.find(item => item.id === id)
   }
 

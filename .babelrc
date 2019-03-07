@@ -13,7 +13,6 @@
       }
     ],
     "stage-0",
-    "flow"
   ],
   "plugins": [
     "lodash",

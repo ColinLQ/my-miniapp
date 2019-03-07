@@ -1,19 +1,8 @@
 ## 微信小程序和 Mobx 的开发脚手架
 为小程序添加数据管理库 Mobx
 
-### 更新日志
-[v1.2.0](docs/v1.2.0.md)
-
-[v1.1.0](docs/v1.1.0.md)
-
-[v1.0.5](docs/v1.0.5.md)
-
-###  Installation
 
 ```
-# 克隆仓库到指定的文件夹
-$ git clone git@github.com:jokerapi/mini-program-starter-kit.git
-$ cd miniapp-mobx-starter-kit
 $ cp project.config.json.example project.config.json
 ```
 
@@ -33,7 +22,6 @@ yarn build //部署
 ### JS
 * 支持es6新语法，新的Api不会转换。
 * 支持装饰器
-* 支持flow
 
 ### css
 	1. 使用 less 作为开发语言，less 编译不使用增量编译，提高稳定性

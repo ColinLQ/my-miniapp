@@ -3,11 +3,11 @@ import { observable, toJS, computed } from 'mobx'
 import { StoreHelper } from './store-helper'
 
 export class WebAPIStore extends StoreHelper {
-  fetchData: Function
+  fetchData
   @observable isFetching = false
   @observable isRejected = false
   @observable isFulfilled = false
-  @observable error: ?Error = null
+  @observable error = null
 
   setPendingState(actionName) {
     this.isFetching = true
@@ -49,7 +49,7 @@ export class WebAPIStore extends StoreHelper {
     }
   }
 
-  loadingAll(...webAPIStores: WebAPIStore[]) {
+  loadingAll(...webAPIStores) {
     return this.loading || !!webAPIStores.find(item => item.loading)
   }
 

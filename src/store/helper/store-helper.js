@@ -3,9 +3,9 @@ import { action, observable, configure } from 'mobx'
 configure({ enforceActions: process.env.NODE_ENV !== 'production' })
 
 export class StoreHelper {
-  static _instanceList: Map
+  static _instanceList
 
-  static get instanceList(): Map {
+  static get instanceList() {
     if (!this._instanceList) {
       this._instanceList = observable.map({}, { deep: false })
     }
@@ -43,7 +43,7 @@ export class StoreHelper {
     return String(instanceKey)
   }
 
-  instanceKey: string
+  instanceKey
 
   constructor(instanceKey = 'only') {
     this.instanceKey = instanceKey

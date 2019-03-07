@@ -1,13 +1,13 @@
 import { fetch } from '@utils'
 
 export class AuthStore {
-  id: number
-  token: string
-  nickname: ?string
-  gender: ?string
-  avatar: ?string
-  loginResolve: Function
-  loginReject: Function
+  id
+  token
+  nickname
+  gender
+  avatar
+  loginResolve
+  loginReject
 
   afterLogin = this.initLoginState()
 
@@ -18,9 +18,9 @@ export class AuthStore {
     })
   }
 
-  async login(): Promise {
+  async login() {
     try {
-      const { code } = await wx.login()
+      const { code } = await wx.pro.login()
       const { data } = await fetch('login', { method: 'POST', data: { code } })
       this.loginResolve(data)
       return data
@@ -31,4 +31,4 @@ export class AuthStore {
   }
 }
 
-export const authStore: AuthStore = new AuthStore()
+export const authStore = new AuthStore()
